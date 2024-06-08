@@ -1,0 +1,51 @@
+.main__container{
+    gap: 10px;
+    align-items: stretch;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    grid-row: 1/span 3;
+  
+  
+  }
+  
+  .weather{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  
+  .image{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .divider{
+    height: 5px;
+    background:  rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+  }
+  
+  .text{
+    font-weight: 200;
+    font-size: 3rem;
+  }
+  
+  
+  .location{
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .city{
+    font-weight: 300;
+  }

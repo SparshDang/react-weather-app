@@ -1,0 +1,20 @@
+.main{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    
+}
+
+.card__heading{
+    font-weight: 100;
+}
+
+.info{
+    font-weight: 400;
+}
