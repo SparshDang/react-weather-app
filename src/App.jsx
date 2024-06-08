@@ -33,13 +33,17 @@ function App() {
     setIsLoading(true);
     if (currentCoords) {
       (async () => {
-        console.log(currentCoords.join());
         if (currentCoords === null) {
           return;
         }
-        const response = await getCurrentData(currentCoords);
-        setIsLoading(false);
-        setData(response);
+        try {
+          const response = await getCurrentData(currentCoords);
+          setData(response);
+        } catch {
+          setHaveError(true);
+        } finally {
+          setIsLoading(false);
+        }
       })();
     }
   }, [currentCoords]);
@@ -47,39 +51,37 @@ function App() {
   return (
     <>
       {isLoading && <Loader />}
-      {!isLoading &&
-        data &&
-        !haveError && (
-          <div className={style.main}>
-            <CurrentCard data={data} />
-            <Card classNames={style.card}>
-              <h2 className={style.card__heading}>Wind Speed</h2>
-              <h1 className={style.info}>{data.current.wind_kph} km/h</h1>
-            </Card>
-            <Card>
-              <h2 className={style.card__heading}>Wind Direction</h2>
-              <h1 className={style.info}>
-                {data.current.wind_degree} ({data.current.wind_dir}){" "}
-              </h1>
-            </Card>
-            <Card>
-              <h2 className={style.card__heading}>Precipitation</h2>
-              <h1 className={style.info}>{data.current.precip_mm}% </h1>
-            </Card>
-            <Card>
-              <h2 className={style.card__heading}>Pressure</h2>
-              <h1 className={style.info}>{data.current.pressure_mb} mb </h1>
-            </Card>
-            <Card>
-              <h2 className={style.card__heading}>Humidity</h2>
-              <h1 className={style.info}>{data.current.humidity}% </h1>
-            </Card>
-            <Card>
-              <h2 className={style.card__heading}>Visiblity</h2>
-              <h1 className={style.info}>{data.current.vis_km} km </h1>
-            </Card>
-          </div>
-        )}
+      {!isLoading && data && !haveError && (
+        <div className={style.main}>
+          <CurrentCard data={data} />
+          <Card classNames={style.card}>
+            <h2 className={style.card__heading}>Wind Speed</h2>
+            <h1 className={style.info}>{data.current.wind_kph} km/h</h1>
+          </Card>
+          <Card>
+            <h2 className={style.card__heading}>Wind Direction</h2>
+            <h1 className={style.info}>
+              {data.current.wind_degree} ({data.current.wind_dir}){" "}
+            </h1>
+          </Card>
+          <Card>
+            <h2 className={style.card__heading}>Precipitation</h2>
+            <h1 className={style.info}>{data.current.precip_mm}% </h1>
+          </Card>
+          <Card>
+            <h2 className={style.card__heading}>Pressure</h2>
+            <h1 className={style.info}>{data.current.pressure_mb} mb </h1>
+          </Card>
+          <Card>
+            <h2 className={style.card__heading}>Humidity</h2>
+            <h1 className={style.info}>{data.current.humidity}% </h1>
+          </Card>
+          <Card>
+            <h2 className={style.card__heading}>Visiblity</h2>
+            <h1 className={style.info}>{data.current.vis_km} km </h1>
+          </Card>
+        </div>
+      )}
       {haveError && <ErrorScreen />}
     </>
   );
