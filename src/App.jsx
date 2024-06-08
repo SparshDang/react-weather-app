@@ -39,6 +39,7 @@ function App() {
         try {
           const response = await getCurrentData(currentCoords);
           setData(response);
+          console.log(response)
         } catch {
           setHaveError(true);
         } finally {

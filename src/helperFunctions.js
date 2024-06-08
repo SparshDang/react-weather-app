@@ -5,6 +5,7 @@ export const getCoordinates = async () => {
 }
 
 export const getCurrentData = async (currentCoords) => {
+  console.log(process.env.REACT_APP_WEATHER_API_KEY)
     const request = await fetch(
         `https://api.weatherapi.com/v1/current.json?q=${currentCoords.join()}`,
         {
